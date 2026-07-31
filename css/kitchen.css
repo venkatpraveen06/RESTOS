@@ -1,0 +1,243 @@
+/* ==========================================================================
+   RestaurantOS Kitchen Display System (KDS) CSS
+   High-contrast, fast-action interface for kitchen staff
+   ========================================================================== */
+
+.kds-container {
+  padding: 1.5rem;
+  background: #0F172A;
+  min-height: calc(100vh - 68px);
+  color: #F8FAFC;
+}
+
+.kds-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #334155;
+}
+
+.kds-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  color: #F8FAFC;
+}
+
+.kds-stats-pills {
+  display: flex;
+  gap: 1rem;
+}
+
+.kds-stat-item {
+  background: #1E293B;
+  border: 1px solid #334155;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.kds-stat-num {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #38BDF8;
+}
+
+.kds-board-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.kds-column {
+  background: #1E293B;
+  border-radius: var(--radius-lg);
+  border: 1px solid #334155;
+  overflow: hidden;
+  min-height: 650px;
+}
+
+.kds-column-header {
+  padding: 1rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid transparent;
+  background: #0F172A;
+}
+
+.col-incoming .kds-column-header { border-color: #38BDF8; color: #38BDF8; }
+.col-preparing .kds-column-header { border-color: #F59E0B; color: #F59E0B; }
+.col-ready .kds-column-header { border-color: #10B981; color: #10B981; }
+.col-completed .kds-column-header { border-color: #94A3B8; color: #94A3B8; }
+
+.kds-column-tickets {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 700px;
+  overflow-y: auto;
+}
+
+/* Order Ticket Card */
+.kds-ticket {
+  background: #0F172A;
+  border: 1px solid #334155;
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-fast);
+}
+
+.kds-ticket:hover {
+  border-color: #64748B;
+  transform: translateY(-2px);
+}
+
+.ticket-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed #334155;
+}
+
+.ticket-order-id {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #F8FAFC;
+}
+
+.ticket-timer {
+  font-family: monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background: #1E293B;
+  color: #38BDF8;
+}
+
+.ticket-timer.urgent {
+  background: #7F1D1D;
+  color: #FCA5A5;
+  animation: pulseTimer 1s infinite alternate;
+}
+
+@keyframes pulseTimer {
+  from { opacity: 0.8; }
+  to { opacity: 1; transform: scale(1.05); }
+}
+
+.ticket-type-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+.type-dinein { background: #312E81; color: #A5B4FC; }
+.type-takeaway { background: #78350F; color: #FDE68A; }
+.type-delivery { background: #064E3B; color: #A7F3D0; }
+
+.ticket-items {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+.ticket-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.4);
+}
+
+.ticket-item-qty {
+  font-weight: 800;
+  color: #38BDF8;
+  width: 24px;
+}
+
+.ticket-item-name {
+  flex: 1;
+  color: #E2E8F0;
+}
+
+.ticket-notes {
+  background: #1E293B;
+  border-left: 3px solid #F59E0B;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.75rem;
+  color: #FCD34D;
+  margin-top: 0.4rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.ticket-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  position: relative;
+  z-index: 20;
+}
+
+.kds-btn {
+  flex: 1;
+  padding: 0.6rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 30;
+}
+
+.kds-btn-accept { background: #0284C7; color: white; }
+.kds-btn-accept:hover { background: #0369A1; transform: translateY(-1px); }
+
+.kds-btn-prep { background: #D97706; color: white; }
+.kds-btn-prep:hover { background: #B45309; transform: translateY(-1px); }
+
+.kds-btn-ready { background: #059669; color: white; }
+.kds-btn-ready:hover { background: #047857; transform: translateY(-1px); }
+
+/* Sound Alert Indicator */
+.sound-toggle-btn {
+  background: #334155;
+  color: #F8FAFC;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .kds-board-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .kds-board-grid { grid-template-columns: 1fr; }
+}

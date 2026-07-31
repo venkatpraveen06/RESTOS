@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RestaurantOS | Authentic Andhra Kitchen & AI Platform</title>
+  <meta name="description" content="Commercial enterprise AI restaurant platform with online customer storefront and staff portal.">
+  
+  <!-- Inter & Plus Jakarta Sans Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- RestaurantOS Design Systems -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/kitchen.css">
+  <link rel="stylesheet" href="css/customer.css">
+</head>
+<body>
+
+  <!-- Initial Entrance Splash Screen Loader (First Visit Only) -->
+  <div id="initialSplashScreen" class="splash-screen-overlay">
+    <div class="splash-content-card">
+      <div class="splash-logo-emblem">
+        <i class="fas fa-utensils"></i>
+      </div>
+      <h1 class="splash-brand-title">Restaurant<span>OS</span></h1>
+      <div class="splash-brand-subtitle">Andhra Spice Kitchen</div>
+      <div class="splash-spinner-ring"></div>
+      <p class="splash-loading-text">Preparing Authentic Andhra Culinary Experience...</p>
+    </div>
+  </div>
+
+  <div id="app-root">
+    
+    <!-- Top Glassmorphic Public Customer Header Bar -->
+    <header class="top-navbar">
+      <div class="brand-logo" onclick="App.switchView('customer-site')">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%); color: white; border: none; box-shadow: 0 4px 10px rgba(220,38,38,0.3);">
+          <i class="fas fa-crown"></i>
+        </div>
+        <div>
+          Restaurant<span style="color: #DC2626;">OS</span> <span style="font-size: 0.8rem; font-weight: 700; color: #475569;">Andhra Kitchen</span>
+        </div>
+      </div>
+
+      <!-- Public Customer Navigation Links -->
+      <nav class="nav-views-switcher">
+        <button class="nav-view-btn active" data-view="customer-site">
+          <i class="fas fa-home"></i> Home
+        </button>
+        <button class="nav-view-btn" data-view="menu-catalog">
+          <i class="fas fa-book-open"></i> Digital Menu Card
+        </button>
+        <button class="nav-view-btn" data-view="cart-checkout">
+          <i class="fas fa-shopping-bag"></i> Cart & Checkout
+        </button>
+      </nav>
+
+      <!-- Customer Actions & Staff Portal Button -->
+      <div class="nav-right-actions">
+        <button class="btn btn-ghost btn-sm" onclick="App.startVoiceOrdering()">
+          <i class="fas fa-microphone" style="color: var(--primary);"></i> Voice Order
+        </button>
+        
+        <button class="btn btn-primary btn-sm" id="cartDrawerTrigger" onclick="App.switchView('cart-checkout')">
+          <i class="fas fa-shopping-bag"></i> Cart
+          <span class="badge" id="cartBadgeCount" style="background: white; color: var(--primary); display: none;">0</span>
+        </button>
+
+        <!-- Subtle Staff Portal Link for Admin/Kitchen Staff -->
+        <button class="btn btn-ghost btn-sm" style="color: #64748B; border: 1px dashed #CBD5E1;" onclick="App.switchView('admin-dashboard')">
+          <i class="fas fa-lock"></i> Staff Portal
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Dynamic Content Container -->
+    <main class="main-container">
+
+      <!-- ===================================================================
+           VIEW 1: ONLINE CUSTOMER STOREFRONT & ORDERING PORTAL
+           =================================================================== -->
+      <section id="view-customer-site" class="view-container">
+
+        <!-- RESTAURANT NAME & LOGO ENTRANCE HEADER BANNER -->
+        <div class="resto-brand-welcome-card">
+          <div class="resto-brand-left">
+            <div class="resto-brand-logo-emblem">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <div class="resto-brand-info">
+              <h1>
+                RestaurantOS Andhra Kitchen
+                <span class="badge badge-success" style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase;">
+                  <i class="fas fa-certificate"></i> Verified Gourmet
+                </span>
+              </h1>
+              <p>Authentic Andhra Culinary Fine Dining & AI Kitchen • ⭐️ 4.9 (2,500+ Happy Foodies)</p>
+            </div>
+          </div>
+
+          <div class="resto-brand-meta">
+            <div class="resto-open-pill">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: #10B981;"></span>
+              OPEN NOW • 10:00 AM - 11:30 PM
+            </div>
+          </div>
+        </div>
+
+        <!-- ANIMATED HERO LANDING BANNER SECTION -->
+        <div class="hero-landing-section">
+          <div class="hero-bg-glow-1"></div>
+          <div class="hero-bg-glow-2"></div>
+          
+          <div class="hero-grid-layout">
+            <div>
+              <div class="hero-pill-badge">
+                <i class="fas fa-fire" style="color: #F59E0B;"></i> 43+ Authentic Andhra Delicacies • AI Powered Dining
+              </div>
+
+              <h1 class="hero-main-title">
+                Experience Authentic Andhra Spice & <span class="hero-gradient-text">Smart AI RestaurantOS</span>
+              </h1>
+
+              <p class="hero-description">
+                Order legendary Andhra Chicken Biryani, Gongura Mutton, Natukodi Pulusu & Avakaya Pickles with instant AI Voice ordering, distance delivery rates & 10-table live floor reservations.
+              </p>
+
+              <div class="hero-cta-group">
+                <button class="hero-primary-btn" onclick="document.getElementById('customerMenuGrid').scrollIntoView({ behavior: 'smooth' })">
+                  Explore Menu Catalog <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="hero-voice-btn" onclick="App.startVoiceOrdering()">
+                  <i class="fas fa-microphone" style="color: #60A5FA;"></i> Voice AI Order
+                </button>
+                <button class="btn btn-ghost btn-sm" style="color: #CBD5E1;" onclick="App.openModal('bookTableModal')">
+                  <i class="fas fa-chair"></i> Reserve Table 1-10
+                </button>
+              </div>
+            </div>
+
+            <!-- Floating Animated Food Card Visual -->
+            <div class="hero-visual-card">
+              <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80" alt="Andhra Biryani" class="hero-food-img">
+              
+              <div style="padding-top: 0.85rem;">
+                <div style="font-weight: 800; font-size: 1.15rem; color: white;">Andhra Chicken Biryani</div>
+                <div style="font-size: 0.85rem; color: #A5B4FC; margin-top: 0.15rem;">Dum cooked with authentic spicy green chillies & desi ghee</div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem;">
+                  <span style="font-size: 1.25rem; font-weight: 800; color: #34D399;">₹349</span>
+                  <span class="badge" style="background: rgba(255,255,255,0.15); color: white;"><i class="fas fa-star" style="color: #F59E0B;"></i> 4.9 (420+ Reviews)</span>
+                </div>
+              </div>
+
+              <div class="hero-floating-tag-1">
+                <i class="fas fa-bolt" style="color: #2563EB;"></i> 15-Min Fast Prep
+              </div>
+
+              <div class="hero-floating-tag-2">
+                <i class="fas fa-motorcycle"></i> ₹25/km Delivery Charge
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Top Location Header Bar -->
+        <div class="resto-header-bar">
+          <div class="location-selector" onclick="App.showToast('Select Delivery Location', 'info')">
+            <i class="fas fa-location-dot"></i>
+            <span>Indiranagar, Bengaluru</span>
+            <span class="location-subtext">Karnataka, India</span>
+            <i class="fas fa-chevron-down" style="font-size: 0.75rem; color: #94A3B8;"></i>
+          </div>
+
+          <div class="resto-nav-actions">
+            <div class="resto-nav-link" onclick="CustomerModule.applyCoupon('WELCOME50')">
+              <i class="fas fa-percent" style="color: #2563EB;"></i> Offers
+            </div>
+            <div class="resto-nav-link" onclick="App.openModal('bookTableModal')">
+              <i class="fas fa-calendar-alt"></i> Reserve Table
+            </div>
+            <div class="resto-nav-link" onclick="App.showToast('Support Chat Online 24/7', 'info')">
+              <i class="fas fa-headset"></i> Help
+            </div>
+          </div>
+        </div>
+
+        <!-- Deals & Offers Carousel -->
+        <div class="resto-deals-section">
+          <h2 class="deals-section-title">Best Offers for You</h2>
+          <div class="deals-carousel">
+            
+            <div class="deal-card blue-theme" onclick="CustomerModule.applyCoupon('WELCOME50')">
+              <div>
+                <span class="deal-tag">SPECIAL OFFER</span>
+                <div class="deal-title">50% OFF UPTO ₹100</div>
+                <div style="font-size: 0.85rem;">On your first online order</div>
+              </div>
+              <div class="deal-code">USE CODE: WELCOME50</div>
+            </div>
+
+            <div class="deal-card" onclick="CustomerModule.applyCoupon('RESTO20')">
+              <div>
+                <span class="deal-tag">GOURMET DEALS</span>
+                <div class="deal-title">FLAT 20% OFF</div>
+                <div style="font-size: 0.85rem;">On orders above ₹499</div>
+              </div>
+              <div class="deal-code">USE CODE: RESTO20</div>
+            </div>
+
+            <div class="deal-card emerald-theme" onclick="CustomerModule.applyCoupon('RESTO100')">
+              <div>
+                <span class="deal-tag">FREE DELIVERY</span>
+                <div class="deal-title">FLAT ₹100 OFF</div>
+                <div style="font-size: 0.85rem;">On chef special orders above ₹599</div>
+              </div>
+              <div class="deal-code">USE CODE: RESTO100</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- "What's on your mind?" Category Circle Avatars -->
+        <div class="mind-section">
+          <h2 class="deals-section-title" style="margin-bottom: 1.25rem;">What's on your mind?</h2>
+          <div class="mind-grid" id="mindCategoryGrid">
+            <!-- Dynamically Rendered Category Avatars -->
+          </div>
+        </div>
+
+        <!-- LIVE RESTAURANT TABLES & CONFIRMED BOOKINGS SECTION (Tables 01 to 10) -->
+        <div class="mind-section" style="background: #FAFAFC;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <div>
+              <h2 class="deals-section-title" style="margin-bottom: 0.2rem;"><i class="fas fa-chair" style="color: #2563EB;"></i> Dine-in Restaurant Floor Plan (Tables 1 - 10)</h2>
+              <p style="font-size: 0.85rem; color: #64748B;">Tap any empty green table to reserve your seat instantly.</p>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="App.openModal('bookTableModal')">+ Reserve Table</button>
+          </div>
+
+          <!-- Floor Plan Status Legend Bar -->
+          <div class="table-map-legend">
+            <div class="legend-item"><span class="legend-dot available"></span> <span>🟢 Empty / Available</span></div>
+            <div class="legend-item"><span class="legend-dot occupied"></span> <span>🔴 Occupied (Seated)</span></div>
+            <div class="legend-item"><span class="legend-dot reserved"></span> <span>🟠 Reserved</span></div>
+          </div>
+
+          <div class="table-map-grid" id="customerTableGrid">
+            <!-- 10 Tables Architectural Grid Injected -->
+          </div>
+
+          <!-- CONFIRMED TABLE BOOKINGS TABLE CARD -->
+          <div id="customerConfirmedReservationsCard" style="margin-top: 1.5rem;">
+            <!-- Confirmed Table Bookings Table Injected by CustomerModule -->
+          </div>
+        </div>
+
+        <!-- Filter Strip -->
+        <div class="resto-filter-strip">
+          <div class="filter-pills-group">
+            <button class="resto-filter-btn" id="filterVegBtn">
+              <span class="veg-icon-box" style="width: 12px; height: 12px;"><span class="veg-icon-dot-inner"></span></span> Pure Veg
+            </button>
+            <button class="resto-filter-btn" id="filterRatingBtn">
+              <i class="fas fa-star" style="color: #F59E0B;"></i> Rating 4.5+
+            </button>
+            <button class="resto-filter-btn" id="filterExpressBtn">
+              <i class="fas fa-bolt" style="color: #2563EB;"></i> Express Prep (<15m)
+            </button>
+          </div>
+
+          <div class="search-box" style="width: 320px;">
+            <i class="fas fa-search"></i>
+            <input type="text" id="customerMenuSearch" class="form-input" placeholder="Search biryani, gongura chicken, meals, pickles...">
+          </div>
+        </div>
+
+        <!-- Food Menu Grid Cards -->
+        <div class="resto-menu-grid" id="customerMenuGrid">
+          <!-- Dynamically Rendered Food Cards -->
+        </div>
+
+        <!-- Sticky Bottom Floating Cart Bar -->
+        <div class="floating-cart-bar" id="floatingCartBar" onclick="App.switchView('cart-checkout')">
+          <div class="floating-cart-info">
+            <span class="floating-cart-count" id="floatingCartCountText">0 ITEMS ADDED</span>
+            <span class="floating-cart-price" id="floatingCartPriceText">₹0</span>
+          </div>
+          <div class="floating-cart-cta">
+            View Cart & Checkout <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ===================================================================
+           VIEW 2: DEDICATED STANDALONE DIGITAL MENU CARD PAGE
+           =================================================================== -->
+      <section id="view-menu-catalog" class="view-container" style="display: none;">
+        <!-- Dynamically Injected by CustomerModule.renderFullMenuCardPage() -->
+      </section>
+
+      <!-- ===================================================================
+           VIEW 3: DEDICATED CART & CHECKOUT PAGE
+           =================================================================== -->
+      <section id="view-cart-checkout" class="view-container" style="display: none;">
+        <div class="cart-page-container">
+          <div class="cart-page-header">
+            <div>
+              <h1 class="cart-page-title"><i class="fas fa-shopping-bag" style="color: #2563EB;"></i> Your Cart & Checkout</h1>
+              <p style="font-size: 0.9rem; color: #64748B;">Review your items, apply discount coupons, select address, and place order.</p>
+            </div>
+            <button class="btn btn-secondary" onclick="App.switchView('customer-site')">
+              <i class="fas fa-arrow-left"></i> Back to Menu Catalog
+            </button>
+          </div>
+
+          <!-- Dynamic Cart Page Content -->
+          <div id="cartPageContent"></div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           VIEW 3: ADMIN AUTHENTICATION / LOGIN PAGE
+           =================================================================== -->
+      <section id="view-admin-login" class="view-container" style="display: none;">
+        <div class="admin-login-container">
+          <div class="admin-login-card">
+            <div class="admin-login-header">
+              <div class="login-brand-icon">
+                <i class="fas fa-shield-halved"></i>
+              </div>
+              <h1 class="login-title">Staff & Admin Portal</h1>
+              <p class="login-subtitle">Sign in to access executive telemetry, revenue metrics & KDS controls.</p>
+            </div>
+
+            <!-- Demo Credentials Helper Pill -->
+            <div class="demo-creds-pill">
+              <i class="fas fa-key" style="color: #2563EB;"></i>
+              <div>
+                <strong>Staff Demo Credentials:</strong><br>
+                Email: <code>admin@restaurantos.demo</code> | Password: <code>admin123</code>
+              </div>
+            </div>
+
+            <form onsubmit="AdminModule.handleLogin(event)">
+              <div class="form-group">
+                <label class="form-label">Work Email / Username</label>
+                <input type="email" id="adminLoginEmail" class="form-input" required value="admin@restaurantos.demo">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Password / Security Key</label>
+                <input type="password" id="adminLoginPassword" class="form-input" required value="admin123">
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem;">
+                <label style="cursor: pointer;"><input type="checkbox" checked style="accent-color: #2563EB;"> Remember Session</label>
+                <a href="#" style="color: #2563EB; font-weight: 600;" onclick="App.showToast('Demo Password is: admin123', 'info'); return false;">Forgot Password?</a>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; font-weight: 800;">
+                Sign In to Staff Portal <i class="fas fa-arrow-right"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           VIEW 4: MULTI-TAB ADMIN SAAS DASHBOARD (PROTECTED STAFF VIEW)
+           =================================================================== -->
+      <section id="view-admin-dashboard" class="view-container" style="display: none;">
+        <div class="admin-layout">
+          
+          <!-- SaaS Left Sidebar with Direct Onclick Tab Handlers -->
+          <aside class="admin-sidebar">
+            <div class="sidebar-nav">
+              <div class="sidebar-section-title">Main Operational Modules</div>
+              
+              <button class="sidebar-tab-btn active" data-tab="overview" onclick="AdminModule.switchTab('overview')">
+                <div class="sidebar-item-left"><i class="fas fa-home"></i> Overview</div>
+              </button>
+              
+              <button class="sidebar-tab-btn" data-tab="orders" onclick="AdminModule.switchTab('orders')">
+                <div class="sidebar-item-left"><i class="fas fa-shopping-bag"></i> Live Orders</div>
+                <span class="sidebar-badge" id="adminSidebarPendingBadge">0</span>
+              </button>
+              
+              <button class="sidebar-tab-btn" data-tab="menu" onclick="AdminModule.switchTab('menu')">
+                <div class="sidebar-item-left"><i class="fas fa-book-open"></i> Menu Manager</div>
+              </button>
+              
+              <button class="sidebar-tab-btn" data-tab="customers" onclick="AdminModule.switchTab('customers')">
+                <div class="sidebar-item-left"><i class="fas fa-users"></i> Customer CRM</div>
+              </button>
+
+              <div class="sidebar-section-title">Kitchen & Analytics</div>
+              
+              <button class="sidebar-tab-btn" style="background: #FFFBEB; border: 1px solid #FDE68A;" onclick="App.switchView('kitchen-kds')">
+                <div class="sidebar-item-left"><i class="fas fa-fire" style="color: #F59E0B;"></i> Kitchen KDS Board</div>
+              </button>
+
+              <button class="sidebar-tab-btn" data-tab="ai" onclick="AdminModule.switchTab('ai')">
+                <div class="sidebar-item-left"><i class="fas fa-brain" style="color: #818CF8;"></i> AI Insights</div>
+              </button>
+              
+              <button class="sidebar-tab-btn" data-tab="reports" onclick="AdminModule.switchTab('reports')">
+                <div class="sidebar-item-left"><i class="fas fa-chart-line"></i> Sales Reports</div>
+              </button>
+
+              <div class="sidebar-section-title">System Settings</div>
+              
+              <button class="sidebar-tab-btn" data-tab="settings" onclick="AdminModule.switchTab('settings')">
+                <div class="sidebar-item-left"><i class="fas fa-sliders"></i> Store Settings</div>
+              </button>
+            </div>
+
+            <div style="padding-top: 1rem; border-top: 1px solid #E2E8F0;">
+              <div style="font-size: 0.8rem; font-weight: 700; color: #0F172A;">Logged in as Manager</div>
+              <div style="font-size: 0.75rem; color: #94A3B8; margin-bottom: 0.75rem;">RestaurantOS Enterprise v2.4</div>
+              <button class="btn btn-danger btn-sm" style="width: 100%;" onclick="AdminModule.logout()">
+                <i class="fas fa-sign-out-alt"></i> Sign Out Admin
+              </button>
+            </div>
+          </aside>
+
+          <!-- Main Admin Content Area -->
+          <main class="admin-main">
+            
+            <!-- SUB-TAB 1: OVERVIEW -->
+            <div id="adminTab-overview" class="admin-subview active">
+              <div class="admin-header">
+                <div class="admin-title-group">
+                  <h1>Executive Telemetry Overview</h1>
+                  <p>Real-time revenue metrics, kitchen staging, and business growth analytics.</p>
+                </div>
+                <div style="display: flex; gap: 0.75rem;">
+                  <button class="btn btn-primary" onclick="AdminModule.openCreateManualOrderModal()">
+                    <i class="fas fa-plus-circle"></i> Create Manual Order
+                  </button>
+                  <button class="btn btn-secondary" onclick="AdminModule.openAddMenuModal()">
+                    <i class="fas fa-plus"></i> Add New Dish
+                  </button>
+                </div>
+              </div>
+
+              <!-- KPI Metric Cards Grid -->
+              <div class="kpi-grid">
+                <div class="kpi-card">
+                  <div class="kpi-info">
+                    <h3>Today's Revenue</h3>
+                    <div class="kpi-value" id="kpiTodayRevenue">₹0</div>
+                    <span class="kpi-trend up"><i class="fas fa-arrow-up"></i> +18.4% vs yesterday</span>
+                  </div>
+                  <div class="kpi-icon-wrapper icon-blue">
+                    <i class="fas fa-indian-rupee-sign"></i>
+                  </div>
+                </div>
+
+                <div class="kpi-card">
+                  <div class="kpi-info">
+                    <h3>Total Orders</h3>
+                    <div class="kpi-value" id="kpiTodayOrders">0</div>
+                    <span class="kpi-trend up"><i class="fas fa-arrow-up"></i> 64 Completed</span>
+                  </div>
+                  <div class="kpi-icon-wrapper icon-emerald">
+                    <i class="fas fa-bag-shopping"></i>
+                  </div>
+                </div>
+
+                <div class="kpi-card">
+                  <div class="kpi-info">
+                    <h3>Pending Orders</h3>
+                    <div class="kpi-value" id="kpiPendingOrders">0</div>
+                    <span class="kpi-trend down"><i class="fas fa-clock"></i> Kitchen Staged</span>
+                  </div>
+                  <div class="kpi-icon-wrapper icon-amber">
+                    <i class="fas fa-hourglass-half"></i>
+                  </div>
+                </div>
+
+                <div class="kpi-card">
+                  <div class="kpi-info">
+                    <h3>Avg Order Value</h3>
+                    <div class="kpi-value" id="kpiAOV">₹0</div>
+                    <span class="kpi-trend up"><i class="fas fa-arrow-up"></i> +5.2% AOV</span>
+                  </div>
+                  <div class="kpi-icon-wrapper icon-purple">
+                    <i class="fas fa-chart-line"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AI Insights Header Card -->
+              <div class="ai-insights-panel">
+                <div class="ai-header">
+                  <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <i class="fas fa-brain" style="font-size: 1.5rem; color: #A5B4FC;"></i>
+                    <h3 style="color: white; margin: 0;">RestaurantOS Intelligence Engine</h3>
+                  </div>
+                  <span class="ai-badge"><i class="fas fa-bolt"></i> REAL-TIME OPTIMIZER</span>
+                </div>
+                <div class="ai-grid" id="adminAIInsightsContainer">
+                  <!-- AI Cards Injected -->
+                </div>
+              </div>
+
+              <!-- Dashboard Analytics Charts -->
+              <div class="charts-grid">
+                <div class="chart-card">
+                  <div class="chart-card-header">
+                    <h3>Hourly Revenue Trajectory</h3>
+                    <span class="badge badge-primary">LIVE HOURLY</span>
+                  </div>
+                  <div style="height: 250px;">
+                    <canvas id="revenueChart"></canvas>
+                  </div>
+                </div>
+
+                <div class="chart-card">
+                  <div class="chart-card-header">
+                    <h3>Order Channel Mix</h3>
+                    <span class="badge badge-neutral">BY TYPE</span>
+                  </div>
+                  <div style="height: 250px;">
+                    <canvas id="ordersChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SUB-TAB 2: LIVE ORDERS -->
+            <div id="adminTab-orders" class="admin-subview">
+              <div class="admin-header">
+                <div class="admin-title-group">
+                  <h1>Live Order Operations & Dispatch</h1>
+                  <p>Real-time order status tracking, kitchen sync, and manual order creation.</p>
+                </div>
+                <button class="btn btn-primary" onclick="AdminModule.openCreateManualOrderModal()">
+                  <i class="fas fa-plus-circle"></i> Create Manual Order
+                </button>
+              </div>
+
+              <div class="data-table-card">
+                <div class="table-toolbar">
+                  <div style="display: flex; gap: 0.5rem;" class="filter-pills-group">
+                    <button class="btn btn-secondary btn-sm orders-filter-btn active" onclick="AdminModule.filterOrdersByStatus('all', this)">All Orders</button>
+                    <button class="btn btn-secondary btn-sm orders-filter-btn" onclick="AdminModule.filterOrdersByStatus('incoming', this)">Incoming</button>
+                    <button class="btn btn-secondary btn-sm orders-filter-btn" onclick="AdminModule.filterOrdersByStatus('preparing', this)">Preparing</button>
+                    <button class="btn btn-secondary btn-sm orders-filter-btn" onclick="AdminModule.filterOrdersByStatus('ready', this)">Ready</button>
+                    <button class="btn btn-secondary btn-sm orders-filter-btn" onclick="AdminModule.filterOrdersByStatus('completed', this)">Completed</button>
+                  </div>
+
+                  <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="form-input" placeholder="Search Order ID, Name, Phone..." oninput="AdminModule.searchOrders(this.value)">
+                  </div>
+                </div>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Customer</th>
+                      <th>Type & Table</th>
+                      <th>Items Summary</th>
+                      <th>Total</th>
+                      <th>Status Control</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminOrdersTableBody">
+                    <!-- Live Orders -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- SUB-TAB 3: MENU MANAGER -->
+            <div id="adminTab-menu" class="admin-subview">
+              <div class="admin-header">
+                <div class="admin-title-group">
+                  <h1>Menu Catalog Manager</h1>
+                  <p>Manage items, prices, discounts, food stock quantities, and availability.</p>
+                </div>
+                <button class="btn btn-primary" onclick="AdminModule.openAddMenuModal()">
+                  <i class="fas fa-plus"></i> Add New Dish
+                </button>
+              </div>
+
+              <div class="data-table-card">
+                <div class="table-toolbar">
+                  <h3>Food Catalog Items & Stock Controls</h3>
+                </div>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Dish Name</th>
+                      <th>Category</th>
+                      <th>Selling Price</th>
+                      <th>Portion Stock Quantity</th>
+                      <th>Stock Availability</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminMenuTableBody">
+                    <!-- Menu Items -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- SUB-TAB 4: CUSTOMER CRM -->
+            <div id="adminTab-customers" class="admin-subview">
+              <div class="admin-header">
+                <div class="admin-title-group">
+                  <h1>Customer Loyalty CRM</h1>
+                  <p>Customer profiles, spend analytics, loyalty points, and VIP tiers.</p>
+                </div>
+                <button class="btn btn-primary" onclick="AdminModule.openAddCustomerModal()">
+                  <i class="fas fa-user-plus"></i> Add Customer
+                </button>
+              </div>
+
+              <div class="crm-grid" id="adminCustomersGrid">
+                <!-- Customer CRM Cards -->
+              </div>
+            </div>
+
+            <!-- SUB-TAB 5: AI INSIGHTS -->
+            <div id="adminTab-ai" class="admin-subview">
+              <div class="admin-header">
+                <div class="admin-title-group">
+                  <h1>RestaurantOS AI Intelligence Module</h1>
+                  <p>Smart menu optimization, cross-sell recommendation pairs, dynamic pricing model.</p>
+                </div>
+              </div>
+              <div class="ai-insights-panel">
+                <div class="ai-header">
+                  <h3 style="color: white;">Smart Recommendations</h3>
+                  <button class="btn btn-primary btn-sm" onclick="App.showToast('AI Model refreshed with live telemetry', 'success')">Refresh AI Model</button>
+                </div>
+                <p style="color: #C7D2FE; margin-bottom: 1.5rem;">AI predictions based on past 30 days customer purchasing frequency and time-of-day demand signals.</p>
+                <div class="ai-grid" id="adminAIInsightsTabContainer"></div>
+              </div>
+            </div>
+
+            <!-- SUB-TAB 6: SALES REPORTS -->
+            <div id="adminTab-reports" class="admin-subview">
+              <div class="admin-header">
+                <div class="admin-title-group">
+                  <h1>Executive Analytics & Financial Reports</h1>
+                  <p>Daily & monthly revenue graphs, top-selling food matrix, download statements.</p>
+                </div>
+                <button class="btn btn-primary" onclick="AdminModule.exportReportsPDF()">
+                  <i class="fas fa-file-pdf"></i> Download PDF Report
+                </button>
+              </div>
+
+              <div class="chart-card" style="margin-bottom: 2rem;">
+                <div class="chart-card-header">
+                  <h3>Peak Hours Order Distribution</h3>
+                </div>
+                <div style="height: 280px;">
+                  <canvas id="peakHoursChart"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- SUB-TAB 7: STORE SETTINGS -->
+            <div id="adminTab-settings" class="admin-subview">
+              <div class="admin-header">
+                <div class="admin-title-group">
+                  <h1>Store Settings & Configuration</h1>
+                  <p>Manage restaurant details, tax rates, delivery charges, and system preferences.</p>
+                </div>
+              </div>
+
+              <form onsubmit="AdminModule.saveSettings(event)" class="settings-grid">
+                <div class="settings-card">
+                  <h3 style="margin-bottom: 1.25rem;">Business Profile</h3>
+                  
+                  <div class="form-group">
+                    <label class="form-label">Restaurant Name</label>
+                    <input type="text" id="setRestoName" class="form-input" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Contact Phone</label>
+                    <input type="text" id="setRestoPhone" class="form-input" required>
+                  </div>
+
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                      <label class="form-label">GST Tax Rate (%)</label>
+                      <input type="number" step="0.1" id="setRestoTax" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Base Delivery Rate (₹/km)</label>
+                      <input type="number" id="setRestoDelivery" class="form-input" value="25" required>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">
+                    <i class="fas fa-save"></i> Save Preferences
+                  </button>
+                </div>
+              </form>
+            </div>
+
+          </main>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           VIEW 5: KITCHEN DISPLAY SYSTEM (KDS)
+           =================================================================== -->
+      <section id="view-kitchen-kds" class="view-container" style="display: none;">
+        <div class="kds-container">
+          
+          <div class="kds-header">
+            <div class="kds-title">
+              <i class="fas fa-fire-burner" style="color: #F59E0B;"></i>
+              <strong>Kitchen Display Operations Board</strong>
+            </div>
+
+            <div class="kds-stats-pills">
+              <div class="kds-stat-item">
+                Incoming: <span class="kds-stat-num" id="kdsStatIncoming">0</span>
+              </div>
+              <div class="kds-stat-item">
+                Preparing: <span class="kds-stat-num" style="color: #F59E0B;" id="kdsStatPrep">0</span>
+              </div>
+              <div class="kds-stat-item">
+                Ready: <span class="kds-stat-num" style="color: #10B981;" id="kdsStatReady">0</span>
+              </div>
+              <button class="sound-toggle-btn" onclick="KitchenModule.playAudioAlert()">
+                <i class="fas fa-volume-high"></i> Test Chime
+              </button>
+              <button class="btn btn-secondary btn-sm" onclick="App.switchView('admin-dashboard')">
+                <i class="fas fa-arrow-left"></i> Exit KDS to Admin
+              </button>
+            </div>
+          </div>
+
+          <div class="kds-board-grid">
+            <div class="kds-column col-incoming">
+              <div class="kds-column-header">
+                <span>INCOMING</span>
+                <i class="fas fa-bell"></i>
+              </div>
+              <div class="kds-column-tickets" id="kdsColIncoming"></div>
+            </div>
+
+            <div class="kds-column col-preparing">
+              <div class="kds-column-header">
+                <span>PREPARING</span>
+                <i class="fas fa-kitchen-set"></i>
+              </div>
+              <div class="kds-column-tickets" id="kdsColPreparing"></div>
+            </div>
+
+            <div class="kds-column col-ready">
+              <div class="kds-column-header">
+                <span>READY FOR PICKUP</span>
+                <i class="fas fa-check-double"></i>
+              </div>
+              <div class="kds-column-tickets" id="kdsColReady"></div>
+            </div>
+
+            <div class="kds-column col-completed">
+              <div class="kds-column-header">
+                <span>COMPLETED</span>
+                <i class="fas fa-box-archive"></i>
+              </div>
+              <div class="kds-column-tickets" id="kdsColCompleted"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Modals -->
+
+    <!-- Voice AI Order Assistant Modal -->
+    <div class="modal-backdrop" id="voiceOrderModal">
+      <div class="modal-card" style="max-width: 480px;">
+        <div class="modal-header">
+          <h3><i class="fas fa-microphone" style="color: #2563EB;"></i> Voice AI Assistant</h3>
+          <button class="btn btn-ghost btn-sm" onclick="App.stopVoiceOrdering()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body voice-assistant-card">
+          <div class="voice-mic-pulser listening" id="voiceMicPulser" onclick="App.restartVoiceListening()">
+            <i class="fas fa-microphone"></i>
+          </div>
+
+          <div style="font-size: 1.1rem; font-weight: 800; color: #0F172A;" id="voiceStatusTitle">
+            Listening for your order...
+          </div>
+          <p style="font-size: 0.85rem; color: #64748B; margin-top: 0.2rem;" id="voiceStatusSubtitle">
+            Speak a dish name or order (e.g. "Add Andhra Chicken Biryani and Majjiga")
+          </p>
+
+          <div class="voice-transcript-box" id="voiceTranscriptText">
+            <span style="color: #94A3B8;">Listening... Start speaking now.</span>
+          </div>
+
+          <div id="voiceResponseBanner" class="voice-response-banner" style="display: none;"></div>
+        </div>
+        <div class="modal-footer" style="justify-content: space-between;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="App.restartVoiceListening()">
+            <i class="fas fa-rotate"></i> Restart Mic
+          </button>
+          <button type="button" class="btn btn-primary btn-sm" style="background: #10B981; border: none; font-weight: 800;" onclick="App.finishVoiceOrdering()">
+            <i class="fas fa-shopping-bag"></i> Finish & Review Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create Manual Order Modal for Admin / POS -->
+    <div class="modal-backdrop" id="createManualOrderModal">
+      <div class="modal-card" style="max-width: 620px;">
+        <div class="modal-header">
+          <h3><i class="fas fa-plus-circle" style="color: #2563EB;"></i> Create Manual Live Order</h3>
+          <button class="btn btn-ghost btn-sm" onclick="App.closeModal('createManualOrderModal')"><i class="fas fa-times"></i></button>
+        </div>
+        <form id="createManualOrderForm" onsubmit="AdminModule.saveManualOrder(event)">
+          <div class="modal-body">
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label">Customer Name *</label>
+                <input type="text" id="manualCustName" class="form-input" required placeholder="e.g. Vikramaditya Rao">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone Number *</label>
+                <input type="tel" id="manualCustPhone" class="form-input" required placeholder="+91 98450 12345">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label">Order Type *</label>
+                <select id="manualOrderType" class="form-select" onchange="AdminModule.toggleManualDeliveryFields()">
+                  <option value="dine-in">Dine-in</option>
+                  <option value="takeaway">Takeaway</option>
+                  <option value="delivery">Delivery</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Table No. / Address</label>
+                <input type="text" id="manualTableNo" class="form-input" placeholder="Table 04 or Address">
+              </div>
+            </div>
+
+            <!-- Delivery Distance Input Field (Only for Delivery) -->
+            <div class="form-group" id="manualDistanceGroup" style="display: none; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: var(--radius-md); padding: 0.75rem;">
+              <label class="form-label" style="color: #1E40AF; font-weight: 700;">Delivery Distance (km) — Rate: ₹25 / km</label>
+              <input type="number" id="manualDistanceKm" class="form-input" value="2" min="1" max="25" oninput="AdminModule.renderManualCartList()">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Select Dishes</label>
+              <div style="display: flex; gap: 0.5rem;">
+                <select id="manualDishSelect" class="form-select" style="flex: 1;">
+                  <!-- Injected -->
+                </select>
+                <button type="button" class="btn btn-secondary" onclick="AdminModule.addDishToManualCart()">+ Add</button>
+              </div>
+            </div>
+
+            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: var(--radius-md); padding: 0.85rem; margin-bottom: 1rem;">
+              <div style="font-size: 0.8rem; font-weight: 700; color: #475569; margin-bottom: 0.4rem; text-transform: uppercase;">Selected Order Items</div>
+              <div id="manualCartItemsContainer"></div>
+              
+              <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #2563EB; margin-top: 0.5rem; font-weight: 600;">
+                <span>Distance Delivery Charge (₹25/km)</span>
+                <span id="manualDeliveryFeeBreakdown">₹0</span>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 1.1rem; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed #CBD5E1; color: #0F172A;">
+                <span>Total Amount (Inc. GST & Delivery)</span>
+                <span id="manualOrderGrandTotal" style="color: #10B981;">₹0</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Order Notes / Kitchen Instructions</label>
+              <input type="text" id="manualNotes" class="form-input" placeholder="Extra spicy, extra Gongura pickle...">
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="App.closeModal('createManualOrderModal')">Cancel</button>
+            <button type="submit" class="btn btn-primary" style="background: #10B981; border: none; font-weight: 800;">
+              <i class="fas fa-check-circle"></i> Create & Dispatch Order
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add Customer Modal -->
+    <div class="modal-backdrop" id="addCustomerModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Register New Customer</h3>
+          <button class="btn btn-ghost btn-sm" onclick="App.closeModal('addCustomerModal')"><i class="fas fa-times"></i></button>
+        </div>
+        <form id="addCustomerForm" onsubmit="AdminModule.saveNewCustomer(event)">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input type="text" id="custName" class="form-input" required placeholder="e.g. Vikramaditya Rao">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" id="custEmail" class="form-input" required placeholder="vikram@example.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" id="custPhone" class="form-input" required placeholder="+91 98450 11223">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Delivery Address</label>
+              <input type="text" id="custAddress" class="form-input" placeholder="Indiranagar, Bengaluru">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="App.closeModal('addCustomerModal')">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Profile</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Book Table Modal -->
+    <div class="modal-backdrop" id="bookTableModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Book Table Reservation (Tables 1 - 10)</h3>
+          <button class="btn btn-ghost btn-sm" onclick="App.closeModal('bookTableModal')"><i class="fas fa-times"></i></button>
+        </div>
+        <form id="bookTableForm" onsubmit="AdminModule.saveNewReservation(event); return false;">
+          <div class="modal-body">
+            
+            <!-- 10 Tables Grid Selector -->
+            <div class="form-group">
+              <label class="form-label">Select Table (1 - 10)</label>
+              <div id="customerModalTableGrid"></div>
+              <input type="hidden" id="resSelectedTable" value="Table 01">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Guest Name *</label>
+              <input type="text" id="resGuestName" class="form-input" placeholder="Sneha Kapoor">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Phone Number *</label>
+              <input type="tel" id="resPhone" class="form-input" placeholder="+91 98111 22334">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem;">
+              <div class="form-group">
+                <label class="form-label">Guests</label>
+                <input type="number" id="resGuests" class="form-input" value="2">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Date</label>
+                <input type="date" id="resDate" class="form-input" value="2026-07-30">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Time</label>
+                <input type="time" id="resTime" class="form-input" value="20:00">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Special Request / Occasion</label>
+              <input type="text" id="resNotes" class="form-input" placeholder="Anniversary seat near window">
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="App.closeModal('bookTableModal')">Cancel</button>
+            <button type="button" class="btn btn-primary" style="background: #10B981; border: none; font-weight: 800;" onclick="AdminModule.saveNewReservation(event)">Confirm Reservation</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Reservation Success Receipt Modal -->
+    <div class="modal-backdrop" id="reservationSuccessModal">
+      <div class="modal-card" style="max-width: 480px;">
+        <div class="modal-header">
+          <h3><i class="fas fa-calendar-check" style="color: #10B981;"></i> Booking Receipt</h3>
+          <button class="btn btn-ghost btn-sm" onclick="App.closeModal('reservationSuccessModal')"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body" id="reservationSuccessModalBody">
+          <!-- Injected -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" style="width: 100%; background: #10B981; border: none; font-weight: 800;" onclick="App.closeModal('reservationSuccessModal')">
+            Done & View Confirmed Tables
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Detail Modal -->
+    <div class="modal-backdrop" id="orderDetailModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Order Telemetry Details</h3>
+          <button class="btn btn-ghost btn-sm" onclick="App.closeModal('orderDetailModal')"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body" id="orderDetailModalBody">
+          <!-- Injected -->
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="App.closeModal('orderDetailModal')">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Menu Item Modal -->
+    <div class="modal-backdrop" id="addMenuModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Add New Menu Item</h3>
+          <button class="btn btn-ghost btn-sm" onclick="App.closeModal('addMenuModal')"><i class="fas fa-times"></i></button>
+        </div>
+        <form id="addMenuForm" onsubmit="AdminModule.saveNewMenuItem(event)">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">Dish Name</label>
+              <input type="text" id="menuName" class="form-input" required placeholder="e.g. Natukodi Pulusu">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label">Category</label>
+                <select id="menuCategory" class="form-select">
+                  <option value="biryani">Andhra Biryanis</option>
+                  <option value="meals">Traditional Meals</option>
+                  <option value="curries">Curries & Gravies</option>
+                  <option value="starters">Crispy Starters</option>
+                  <option value="beverages">Popular Beverages</option>
+                  <option value="pickles">Andhra Pickles</option>
+                  <option value="extras">Extras & Sides</option>
+                  <option value="desserts">Desserts</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Price (₹)</label>
+                <input type="number" id="menuPrice" class="form-input" required placeholder="349">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Description</label>
+              <textarea id="menuDesc" class="form-textarea" rows="3" placeholder="Rich taste notes, ingredients..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Image URL</label>
+              <input type="url" id="menuImage" class="form-input" placeholder="https://images.unsplash.com/...">
+            </div>
+            <div class="form-group">
+              <label><input type="checkbox" id="menuVeg" checked> Vegetarian Dish</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="App.closeModal('addMenuModal')">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Dish</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Menu Item Modal (Edit Price & Food Quantity) -->
+    <div class="modal-backdrop" id="editMenuModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3><i class="fas fa-edit" style="color: #2563EB;"></i> Edit Dish Price & Food Quantity</h3>
+          <button class="btn btn-ghost btn-sm" onclick="App.closeModal('editMenuModal')"><i class="fas fa-times"></i></button>
+        </div>
+        <form id="editMenuForm" onsubmit="AdminModule.saveEditMenuItem(event)">
+          <input type="hidden" id="editItemId">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">Dish Name *</label>
+              <input type="text" id="editMenuName" class="form-input" required>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label">Selling Price (₹) *</label>
+                <input type="number" id="editMenuPrice" class="form-input" required placeholder="349">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Food Portion Quantity *</label>
+                <input type="number" id="editMenuStockQty" class="form-input" required min="0" placeholder="30">
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label">Category</label>
+                <select id="editMenuCategory" class="form-select">
+                  <option value="biryani">Andhra Biryanis</option>
+                  <option value="meals">Traditional Meals</option>
+                  <option value="curries">Curries & Gravies</option>
+                  <option value="starters">Crispy Starters</option>
+                  <option value="beverages">Popular Beverages</option>
+                  <option value="pickles">Andhra Pickles</option>
+                  <option value="extras">Extras & Sides</option>
+                  <option value="desserts">Desserts</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Original Price (₹)</label>
+                <input type="number" id="editMenuOriginalPrice" class="form-input" placeholder="399">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Description</label>
+              <textarea id="editMenuDesc" class="form-textarea" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+              <label><input type="checkbox" id="editMenuVeg"> Vegetarian Dish</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="App.closeModal('editMenuModal')">Cancel</button>
+            <button type="submit" class="btn btn-primary" style="background: #10B981; border: none; font-weight: 800;">
+              <i class="fas fa-save"></i> Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- WhatsApp Integration Flow Simulator Modal -->
+    <div class="modal-backdrop" id="whatsAppSimulatorModal">
+      <div class="modal-card" style="max-width: 480px; padding: 0; overflow: hidden;">
+        <div id="whatsAppModalBody"></div>
+        <div style="padding: 1rem; background: var(--bg-main); text-align: right;">
+          <button class="btn btn-secondary btn-sm" onclick="App.closeModal('whatsAppSimulatorModal')">Close Simulator</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+  </div>
+
+  <!-- JavaScript Bundle -->
+  <script src="js/data.js"></script>
+  <script src="js/ai-engine.js"></script>
+  <script src="js/charts-config.js"></script>
+  <script src="js/customer.js"></script>
+  <script src="js/kitchen.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
