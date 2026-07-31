@@ -24,7 +24,34 @@ const App = {
       this.switchView(gotoView);
     }
 
+    // Setup Smooth Scroll Reveal Observer
+    this.setupScrollReveal();
+
     console.log('RestaurantOS Master App initialized successfully.');
+  },
+
+  setupScrollReveal() {
+    if (typeof IntersectionObserver === 'undefined') return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.12
+    };
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('#section-about, #section-gallery, #section-feedback, #section-contact, .deal-card, .resto-brand-welcome-card').forEach(el => {
+      el.classList.add('reveal-on-scroll');
+      observer.observe(el);
+    });
   },
 
   handleInitialSplashScreen() {

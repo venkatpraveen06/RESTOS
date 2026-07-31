@@ -107,6 +107,97 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ==========================================================================
+   Smooth Micro-Animations, Hover Gestures & Motion System
+   ========================================================================== */
+
+/* Scroll-Triggered Reveal Gesture */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px) scale(0.98);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Universal Button Press & Ripple Gestures */
+.btn, .resto-add-btn, .nav-view-btn, .hero-primary-btn, .hero-voice-btn, .resto-qty-btn {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background-color 0.2s ease;
+  will-change: transform;
+}
+
+.btn:active, .resto-add-btn:active, .nav-view-btn:active, .hero-primary-btn:active, .hero-voice-btn:active, .resto-qty-btn:active {
+  transform: scale(0.95) translateY(1px) !important;
+}
+
+/* Card Hover Lift & Glow Gestures */
+.resto-dish-card, .checkout-card, .deal-card, .table-card, .crm-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease !important;
+  will-change: transform, box-shadow;
+}
+
+.resto-dish-card:hover {
+  transform: translateY(-6px) scale(1.01) !important;
+  box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.12) !important;
+}
+
+.checkout-card:hover {
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Image Zoom Gesture on Hover */
+.resto-dish-card:hover .dish-img {
+  transform: scale(1.08) !important;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Category Avatar Hover Ripple & Rotation Gesture */
+.mind-item {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.mind-item:hover {
+  transform: translateY(-4px) scale(1.06) !important;
+}
+
+.mind-item:hover .mind-avatar-box,
+.mind-item:hover .mind-avatar-wrap {
+  transform: scale(1.12) rotate(3deg) !important;
+  border-color: #2563EB !important;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25) !important;
+}
+
+/* Spring Modal Entrance Motion */
+.modal-backdrop.active .modal-card {
+  transform: scale(1) translateY(0) !important;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease !important;
+}
+
+.modal-card {
+  transform: scale(0.92) translateY(20px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+/* Floating Cart Bar Smooth Slide Entrance */
+.floating-cart-bar.active {
+  animation: slideUpCartBar 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes slideUpCartBar {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 40px) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
 /* Initial Entrance Splash Screen Loader (First Visit Only) */
 .splash-screen-overlay {
   position: fixed;
