@@ -17,6 +17,13 @@ const App = {
     if (typeof KitchenModule !== 'undefined') KitchenModule.init();
     if (typeof AdminModule !== 'undefined') AdminModule.init();
 
+    // Check target view from hash or localStorage
+    const gotoView = localStorage.getItem('resto_goto_view') || (window.location.hash ? window.location.hash.replace('#view-', '') : null);
+    if (gotoView) {
+      localStorage.removeItem('resto_goto_view');
+      this.switchView(gotoView);
+    }
+
     console.log('RestaurantOS Master App initialized successfully.');
   },
 

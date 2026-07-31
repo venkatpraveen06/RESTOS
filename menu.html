@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Menu Card | RestaurantOS Andhra Kitchen</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Explore our authentic chef-curated 43 Andhra delicacies, biryanis, gravies, beverages, and pickles on our standalone Digital Menu Card with instant online ordering.">
+  <meta name="keywords" content="Andhra Kitchen Digital Menu Card, Biryani Menu, Restaurant Digital Menu, Online Food Menu">
+
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/customer.css">
+</head>
+<body>
+  <div id="app-root">
+
+    <!-- Top Glassmorphic Navigation Header Bar -->
+    <header class="top-navbar">
+      <div class="brand-logo" onclick="window.location.href='index.html'">
+        <div class="brand-icon">
+          <i class="fas fa-utensils"></i>
+        </div>
+        <div>
+          Restaurant<span style="color: #DC2626;">OS</span> <span style="font-size: 0.8rem; font-weight: 700; color: #475569;">Andhra Kitchen</span>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="nav-views-switcher">
+        <a href="index.html" class="nav-view-btn" style="text-decoration: none;">
+          <i class="fas fa-home"></i> Home
+        </a>
+        <a href="menu.html" class="nav-view-btn active" style="text-decoration: none;">
+          <i class="fas fa-book-open"></i> Digital Menu Card
+        </a>
+        <a href="index.html#view-cart-checkout" class="nav-view-btn" style="text-decoration: none;" onclick="localStorage.setItem('resto_goto_view', 'cart-checkout');">
+          <i class="fas fa-shopping-bag"></i> Cart & Checkout
+        </a>
+      </nav>
+
+      <!-- Customer Actions & Staff Portal Button -->
+      <div class="nav-right-actions">
+        <button type="button" class="btn btn-ghost btn-sm" onclick="App.startVoiceOrdering()">
+          <i class="fas fa-microphone" style="color: #2563EB;"></i> Voice Order
+        </button>
+        <a href="index.html#view-cart-checkout" class="btn btn-primary btn-sm" style="text-decoration: none;" onclick="localStorage.setItem('resto_goto_view', 'cart-checkout');">
+          <i class="fas fa-shopping-cart"></i> Cart <span id="cartBadgeCount" class="badge badge-warning" style="display: none; margin-left: 0.3rem;">0</span>
+        </a>
+        <a href="index.html#view-admin-login" class="btn btn-secondary btn-sm" style="text-decoration: none;" onclick="localStorage.setItem('resto_goto_view', 'admin-login');">
+          <i class="fas fa-lock"></i> Staff Portal
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Container for Dedicated Standalone Digital Menu Card -->
+    <main class="main-container">
+      <section id="view-menu-catalog" class="view-container">
+        <!-- Injected Dynamically by CustomerModule.renderFullMenuCardPage() -->
+      </section>
+    </main>
+
+    <!-- Floating Bottom Cart Bar -->
+    <div id="floatingCartBar" class="floating-cart-bar" onclick="window.location.href='index.html#view-cart-checkout'; localStorage.setItem('resto_goto_view', 'cart-checkout');">
+      <div class="floating-cart-info">
+        <span class="floating-cart-count" id="floatingCartCountText">0 ITEMS ADDED</span>
+        <span class="floating-cart-price" id="floatingCartPriceText">₹0</span>
+      </div>
+      <div class="floating-cart-cta">
+        View Cart & Checkout <i class="fas fa-arrow-right"></i>
+      </div>
+    </div>
+
+    <!-- WhatsApp Business Order Dispatch Modal -->
+    <div id="whatsappModal" class="modal-backdrop">
+      <div class="wa-modal-card">
+        <div class="wa-header">
+          <div class="wa-header-left">
+            <div class="wa-avatar-box">
+              <i class="fas fa-utensils"></i>
+              <div class="wa-verified-badge"><i class="fas fa-check"></i></div>
+            </div>
+            <div class="wa-header-info">
+              <h4>Andhra Kitchen Dispatch <i class="fas fa-circle-check" style="color: #25D366; font-size: 0.85rem;"></i></h4>
+              <div class="wa-header-sub">Official WhatsApp Business • Online</div>
+            </div>
+          </div>
+          <div class="wa-header-actions">
+            <i class="fas fa-phone"></i>
+            <i class="fas fa-video"></i>
+            <i class="fas fa-ellipsis-vertical" onclick="App.closeModal('whatsappModal')"></i>
+          </div>
+        </div>
+
+        <div class="wa-chat-body" id="whatsappChatBody">
+          <!-- Injected Dynamically by App.triggerWhatsAppFlow -->
+        </div>
+
+        <div class="wa-footer-bar">
+          <div class="wa-input-box">
+            <i class="far fa-face-smile" style="color: #64748B; font-size: 1.1rem;"></i>
+            <input type="text" placeholder="Type a message..." value="Order Dispatch Confirmed ✓" readonly>
+            <i class="fas fa-paperclip" style="color: #64748B; font-size: 1.05rem;"></i>
+          </div>
+          <div class="wa-mic-btn" onclick="App.closeModal('whatsappModal')">
+            <i class="fas fa-paper-plane"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Voice Order Assistant Modal -->
+    <div id="voiceModal" class="modal-backdrop">
+      <div class="modal-card" style="max-width: 480px;">
+        <div class="modal-header">
+          <h3 style="font-size: 1.1rem; font-weight: 800; color: #0F172A; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-microphone" style="color: #2563EB;"></i> RestaurantOS AI Voice Order
+          </h3>
+          <button class="btn btn-ghost btn-sm" onclick="App.closeModal('voiceModal')"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body" style="text-align: center; padding: 2rem 1.5rem;">
+          <div style="width: 72px; height: 72px; background: #EFF6FF; color: #2563EB; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1.25rem auto; border: 2px solid #BFDBFE;">
+            <i class="fas fa-microphone" id="voiceMicIcon"></i>
+          </div>
+          <h4 id="voiceStatusTitle" style="font-size: 1.25rem; font-weight: 800; color: #0F172A; margin-bottom: 0.5rem;">Listening for your order...</h4>
+          <p id="voiceTranscriptText" style="font-size: 0.9rem; color: #64748B; min-height: 48px;">"I want 2 Andhra Chicken Biryani and 1 Majjiga buttermilk"</p>
+          <div style="font-size: 0.78rem; color: #94A3B8; margin-top: 1rem;">Supported languages: English & Telugu</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+  </div>
+
+  <!-- Master Application Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/ai-engine.js"></script>
+  <script src="js/customer.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      CustomerModule.init();
+      CustomerModule.renderFullMenuCardPage();
+      App.setupModalHandlers();
+    });
+  </script>
+</body>
+</html>
