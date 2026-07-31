@@ -263,30 +263,241 @@
           </div>
         </div>
 
-        <!-- Filter Strip -->
-        <div class="resto-filter-strip">
-          <div class="filter-pills-group">
-            <button class="resto-filter-btn" id="filterVegBtn">
-              <span class="veg-icon-box" style="width: 12px; height: 12px;"><span class="veg-icon-dot-inner"></span></span> Pure Veg
-            </button>
-            <button class="resto-filter-btn" id="filterRatingBtn">
-              <i class="fas fa-star" style="color: #F59E0B;"></i> Rating 4.5+
-            </button>
-            <button class="resto-filter-btn" id="filterExpressBtn">
-              <i class="fas fa-bolt" style="color: #2563EB;"></i> Express Prep (<15m)
-            </button>
+        <!-- Digital Menu Card Callout Banner (Replacing embedded menu grid on home page) -->
+        <div style="background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%); color: white; border-radius: var(--radius-xl); padding: 2.25rem 2rem; margin-top: 2rem; margin-bottom: 2rem; border: 1px solid rgba(255, 255, 255, 0.15); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; box-shadow: 0 15px 35px rgba(30, 27, 75, 0.25);">
+          <div style="display: flex; align-items: center; gap: 1.25rem;">
+            <div style="width: 64px; height: 64px; background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: #FDE68A; border: 1px solid rgba(255,255,255,0.2);">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <div>
+              <h2 style="font-size: 1.5rem; font-weight: 800; color: white; margin: 0;">Explore Our Full Digital Menu Card</h2>
+              <p style="font-size: 0.88rem; color: #CBD5E1; margin-top: 0.25rem;">Browse all 43 chef-curated Andhra delicacies, biryanis, thalis, and pickles on our dedicated Menu Card page.</p>
+            </div>
           </div>
 
-          <div class="search-box" style="width: 320px;">
-            <i class="fas fa-search"></i>
-            <input type="text" id="customerMenuSearch" class="form-input" placeholder="Search biryani, gongura chicken, meals, pickles...">
-          </div>
+          <a href="menu.html" class="hero-primary-btn" style="text-decoration: none; padding: 0.85rem 1.75rem; font-size: 0.95rem;">
+            Open Digital Menu Card <i class="fas fa-arrow-right"></i>
+          </a>
         </div>
 
-        <!-- Food Menu Grid Cards -->
-        <div class="resto-menu-grid" id="customerMenuGrid">
-          <!-- Dynamically Rendered Food Cards -->
-        </div>
+        <!-- ===================================================================
+             SECTION 1: ABOUT THE RESTAURANT (HERITAGE & CRAFTSMANSHIP)
+             =================================================================== -->
+        <section id="section-about" style="margin-top: 4rem; margin-bottom: 3.5rem;">
+          <div style="background: #FFFFFF; border: 1px solid var(--border-color); border-radius: var(--radius-xl); padding: 2.5rem 2rem; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);">
+            <div style="display: grid; grid-template-columns: 1fr 1.1fr; gap: 2.5rem; align-items: center;">
+              <div>
+                <span class="hero-pill-badge" style="background: #EFF6FF; color: #2563EB; border: 1px solid #BFDBFE;">
+                  <i class="fas fa-award"></i> Est. 1998 • Authentic Heritage
+                </span>
+                <h2 style="font-size: 2rem; font-weight: 800; color: #0F172A; margin-top: 0.5rem; margin-bottom: 1rem; line-height: 1.25;">
+                  Crafting Royal Andhra Culinary Traditions For Over 25 Years
+                </h2>
+                <p style="font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 1.25rem;">
+                  Founded in Guntur and now serving Bengaluru, <strong>RestaurantOS Andhra Kitchen</strong> is built on the philosophy of uncompromising culinary authenticity. Every dish is slow-cooked in traditional brass degs using hand-pounded Guntur red chillies, freshly ground spices, cold-pressed oils, and farm-fresh ingredients.
+                </p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+                  <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 1rem; border-radius: var(--radius-lg);">
+                    <div style="font-size: 1.5rem; font-weight: 800; color: #DC2626;">100%</div>
+                    <div style="font-size: 0.8rem; font-weight: 700; color: #475569; margin-top: 0.2rem;">Authentic Guntur Spices</div>
+                  </div>
+                  <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 1rem; border-radius: var(--radius-lg);">
+                    <div style="font-size: 1.5rem; font-weight: 800; color: #10B981;">0 Preservatives</div>
+                    <div style="font-size: 0.8rem; font-weight: 700; color: #475569; margin-top: 0.2rem;">Pure Natural Oils & Ghee</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="position: relative;">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="Restaurant Interior & Ambiance" style="width: 100%; height: 340px; object-fit: cover; border-radius: var(--radius-xl); box-shadow: 0 15px 30px rgba(15, 23, 42, 0.15); border: 2px solid white;">
+                <div style="position: absolute; bottom: -15px; left: -15px; background: #0F172A; color: white; padding: 0.75rem 1.25rem; border-radius: var(--radius-lg); box-shadow: 0 10px 25px rgba(0,0,0,0.3); font-size: 0.85rem; font-weight: 800; display: flex; align-items: center; gap: 0.6rem;">
+                  <i class="fas fa-utensils" style="color: #38BDF8; font-size: 1.2rem;"></i> 2,450+ Daily Happy Diners
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             SECTION 2: PHOTO & AMBIANCE GALLERY
+             =================================================================== -->
+        <section id="section-gallery" style="margin-bottom: 3.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem;">
+            <div>
+              <span style="font-size: 0.78rem; font-weight: 800; color: #2563EB; text-transform: uppercase; letter-spacing: 0.05em;">Visual Showcase</span>
+              <h2 style="font-size: 1.75rem; font-weight: 800; color: #0F172A; margin-top: 0.2rem;">Ambiance & Culinary Gallery</h2>
+            </div>
+            <div style="font-size: 0.88rem; color: #64748B; font-weight: 600;">Click photos for full view</div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;">
+            <div style="position: relative; border-radius: var(--radius-xl); overflow: hidden; height: 220px; cursor: pointer; border: 1px solid var(--border-color);" onclick="CustomerModule.openGalleryPreview('https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1200&q=80', 'Royal Dum Biryani Cooking')">
+              <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80" alt="Biryani" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;" class="dish-img">
+              <div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(15,23,42,0.85) 100%); padding: 1rem; display: flex; align-items: flex-end;">
+                <span style="color: white; font-weight: 800; font-size: 0.9rem;"><i class="fas fa-camera"></i> Royal Dum Biryani</span>
+              </div>
+            </div>
+
+            <div style="position: relative; border-radius: var(--radius-xl); overflow: hidden; height: 220px; cursor: pointer; border: 1px solid var(--border-color);" onclick="CustomerModule.openGalleryPreview('https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?auto=format&fit=crop&w=1200&q=80', 'Traditional Banana Leaf Thali')">
+              <img src="https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?auto=format&fit=crop&w=600&q=80" alt="Thali" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;" class="dish-img">
+              <div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(15,23,42,0.85) 100%); padding: 1rem; display: flex; align-items: flex-end;">
+                <span style="color: white; font-weight: 800; font-size: 0.9rem;"><i class="fas fa-camera"></i> Banana Leaf Thali</span>
+              </div>
+            </div>
+
+            <div style="position: relative; border-radius: var(--radius-xl); overflow: hidden; height: 220px; cursor: pointer; border: 1px solid var(--border-color);" onclick="CustomerModule.openGalleryPreview('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80', 'Luxury Family Dining Ambiance')">
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="Ambiance" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;" class="dish-img">
+              <div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(15,23,42,0.85) 100%); padding: 1rem; display: flex; align-items: flex-end;">
+                <span style="color: white; font-weight: 800; font-size: 0.9rem;"><i class="fas fa-camera"></i> Luxury Fine Dining</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             SECTION 3: CUSTOMER REVIEWS & FEEDBACK
+             =================================================================== -->
+        <section id="section-feedback" style="margin-bottom: 3.5rem;">
+          <div style="background: #FFFFFF; border: 1px solid var(--border-color); border-radius: var(--radius-xl); padding: 2rem; box-shadow: 0 4px 14px rgba(15,23,42,0.03);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.75rem; flex-wrap: wrap; gap: 1rem;">
+              <div>
+                <span style="font-size: 0.78rem; font-weight: 800; color: #10B981; text-transform: uppercase; letter-spacing: 0.05em;">Customer Reviews</span>
+                <h2 style="font-size: 1.75rem; font-weight: 800; color: #0F172A; margin-top: 0.2rem;">What Diners Say</h2>
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.3rem;">
+                  <span style="font-size: 1.2rem; font-weight: 800; color: #0F172A;">4.8</span>
+                  <div style="color: #F59E0B; font-size: 0.9rem;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i></div>
+                  <span style="font-size: 0.85rem; color: #64748B;">Based on 2,450+ Verified Orders</span>
+                </div>
+              </div>
+
+              <button class="btn btn-primary" onclick="App.openModal('feedbackModal')">
+                <i class="fas fa-pen-to-square"></i> Leave Feedback
+              </button>
+            </div>
+
+            <!-- Dynamic Customer Reviews Grid -->
+            <div id="feedbackGridContainer" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;">
+              <!-- Rendered Dynamically by CustomerModule.renderCustomerFeedback() -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             SECTION 4: CONTACT & LOCATION DETAILS CARD
+             =================================================================== -->
+        <section id="section-contact" style="margin-bottom: 4rem;">
+          <div style="background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%); color: white; border-radius: var(--radius-xl); padding: 2.5rem 2rem; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 40px rgba(15,23,42,0.25);">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+              <div>
+                <span class="hero-pill-badge" style="background: rgba(255,255,255,0.15); color: #FDE68A; margin-bottom: 0.75rem;">
+                  <i class="fas fa-location-dot"></i> Visit & Contact Us
+                </span>
+                <h2 style="font-size: 1.85rem; font-weight: 800; color: white; margin-bottom: 1.25rem;">Visit RestaurantOS Andhra Kitchen</h2>
+
+                <div style="display: flex; flex-direction: column; gap: 1rem; font-size: 0.92rem; color: #CBD5E1;">
+                  <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                    <i class="fas fa-location-dot" style="color: #EF4444; font-size: 1.2rem; margin-top: 0.2rem;"></i>
+                    <div>
+                      <strong style="color: white;">Address:</strong><br>
+                      Door No. 12-4-88, Indiranagar Double Road, Opposite Metro Pillar 142, Bengaluru, Karnataka - 560038
+                    </div>
+                  </div>
+
+                  <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <i class="fas fa-phone" style="color: #38BDF8; font-size: 1.1rem;"></i>
+                    <div>
+                      <strong style="color: white;">Phone:</strong> +91 98450 12345 / +91 080 4123 9988
+                    </div>
+                  </div>
+
+                  <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <i class="fas fa-clock" style="color: #34D399; font-size: 1.1rem;"></i>
+                    <div>
+                      <strong style="color: white;">Operating Hours:</strong> 11:00 AM – 11:30 PM (All 7 Days)
+                    </div>
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 0.85rem; margin-top: 1.75rem; flex-wrap: wrap;">
+                  <a href="tel:+919845012345" class="btn btn-primary" style="text-decoration: none;">
+                    <i class="fas fa-phone"></i> Call Restaurant
+                  </a>
+                  <button class="btn btn-secondary" onclick="CustomerModule.openDirections()" style="background: rgba(255,255,255,0.15); color: white; border-color: rgba(255,255,255,0.25);">
+                    <i class="fas fa-map-location-dot"></i> Get Directions
+                  </button>
+                </div>
+              </div>
+
+              <!-- Map Visual Card -->
+              <div style="background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-xl); padding: 1.5rem; text-align: center;">
+                <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: #60A5FA; margin-bottom: 0.75rem;"></i>
+                <h3 style="font-size: 1.2rem; font-weight: 800; color: white; margin-bottom: 0.4rem;">Indiranagar Flagship Outlet</h3>
+                <p style="font-size: 0.85rem; color: #94A3B8; margin-bottom: 1.25rem;">Free valet parking available. Table reservations recommended for weekend dining.</p>
+                <button class="btn btn-success" style="width: 100%; font-weight: 800;" onclick="App.openModal('bookTableModal')">
+                  <i class="fas fa-chair"></i> Book Dining Table Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             SECTION 5: COMMERCIAL MASTER FOOTER
+             =================================================================== -->
+        <footer style="background: #FFFFFF; border: 1px solid var(--border-color); border-radius: var(--radius-xl); padding: 2.5rem 2rem 1.5rem 2rem; margin-bottom: 2rem;">
+          <div style="display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+            <div>
+              <div class="brand-logo" style="margin-bottom: 0.85rem;">
+                <div class="brand-icon"><i class="fas fa-utensils"></i></div>
+                <div>Restaurant<span style="color: #DC2626;">OS</span></div>
+              </div>
+              <p style="font-size: 0.85rem; color: #64748B; line-height: 1.6; max-width: 320px;">
+                Authentic Andhra Fine Dining & Cloud Kitchen. Crafting traditional biryanis, thalis, and pickles with genuine spices since 1998.
+              </p>
+            </div>
+
+            <div>
+              <h4 style="font-size: 0.95rem; font-weight: 800; color: #0F172A; margin-bottom: 0.85rem;">Quick Navigation</h4>
+              <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.45rem; font-size: 0.85rem; font-weight: 600; color: #475569;">
+                <li><a href="index.html" style="color: inherit; text-decoration: none;">Home Storefront</a></li>
+                <li><a href="menu.html" style="color: inherit; text-decoration: none;">Digital Menu Card</a></li>
+                <li><a href="#section-about" style="color: inherit; text-decoration: none;">About Heritage</a></li>
+                <li><a href="#section-gallery" style="color: inherit; text-decoration: none;">Photo Gallery</a></li>
+                <li><a href="#section-feedback" style="color: inherit; text-decoration: none;">Customer Reviews</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 style="font-size: 0.95rem; font-weight: 800; color: #0F172A; margin-bottom: 0.85rem;">Customer Support</h4>
+              <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.45rem; font-size: 0.85rem; font-weight: 600; color: #475569;">
+                <li><a href="#" onclick="App.switchView('cart-checkout'); return false;" style="color: inherit; text-decoration: none;">Track Order Status</a></li>
+                <li><a href="#" onclick="App.openModal('bookTableModal'); return false;" style="color: inherit; text-decoration: none;">Book Table Reservation</a></li>
+                <li><a href="#" onclick="App.openModal('feedbackModal'); return false;" style="color: inherit; text-decoration: none;">Submit Feedback</a></li>
+                <li><a href="tel:+919845012345" style="color: inherit; text-decoration: none;">Call Helpline</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 style="font-size: 0.95rem; font-weight: 800; color: #0F172A; margin-bottom: 0.85rem;">Social & Ordering</h4>
+              <div style="display: flex; gap: 0.65rem; font-size: 1.25rem; color: #2563EB; margin-bottom: 1rem;">
+                <a href="#" style="color: #25D366;"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" style="color: #E4405F;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="color: #1877F2;"><i class="fab fa-facebook"></i></a>
+                <a href="#" style="color: #CB202D;"><i class="fas fa-utensils"></i></a>
+              </div>
+              <div style="font-size: 0.78rem; color: #94A3B8;">FSSAI Lic. No. 11223344556677</div>
+            </div>
+          </div>
+
+          <div style="border-top: 1px solid var(--border-color); padding-top: 1.25rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: #94A3B8; flex-wrap: wrap; gap: 0.5rem;">
+            <div>© 2026 RestaurantOS Andhra Kitchen. All rights reserved.</div>
+            <div style="display: flex; gap: 1rem;">
+              <a href="#" style="color: inherit; text-decoration: none;">Privacy Policy</a>
+              <a href="#" style="color: inherit; text-decoration: none;">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
 
         <!-- Sticky Bottom Floating Cart Bar -->
         <div class="floating-cart-bar" id="floatingCartBar" onclick="App.switchView('cart-checkout')">
@@ -1153,6 +1364,63 @@
         <div id="whatsAppModalBody"></div>
         <div style="padding: 1rem; background: var(--bg-main); text-align: right;">
           <button class="btn btn-secondary btn-sm" onclick="App.closeModal('whatsAppSimulatorModal')">Close Simulator</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Customer Feedback Submission Modal -->
+    <div class="modal-backdrop" id="feedbackModal">
+      <div class="modal-card" style="max-width: 500px;">
+        <div class="modal-header">
+          <h3 style="font-size: 1.1rem; font-weight: 800; color: #0F172A; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-star" style="color: #F59E0B;"></i> Share Your Dining Feedback
+          </h3>
+          <button class="btn btn-ghost btn-sm" onclick="App.closeModal('feedbackModal')"><i class="fas fa-times"></i></button>
+        </div>
+        <form id="feedbackForm" onsubmit="CustomerModule.submitCustomerFeedback(event)">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">Your Full Name *</label>
+              <input type="text" id="feedbackCustName" class="form-input" required placeholder="e.g. Vikramaditya Rao">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label">Star Rating *</label>
+                <select id="feedbackRating" class="form-select" required>
+                  <option value="5">⭐⭐⭐⭐⭐ (5/5 Exceptional)</option>
+                  <option value="4">⭐⭐⭐⭐ (4/5 Great)</option>
+                  <option value="3">⭐⭐⭐ (3/5 Average)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Dish Ordered</label>
+                <input type="text" id="feedbackDish" class="form-input" placeholder="e.g. Andhra Chicken Biryani">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Your Review & Dining Experience *</label>
+              <textarea id="feedbackComment" class="form-textarea" rows="3" required placeholder="Tell us about the flavor, portion, speed, and service..."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="App.closeModal('feedbackModal')">Cancel</button>
+            <button type="submit" class="btn btn-primary" style="background: #10B981; border: none; font-weight: 800;">
+              <i class="fas fa-paper-plane"></i> Publish Review
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Gallery Lightbox Preview Modal -->
+    <div class="modal-backdrop" id="galleryLightBoxModal">
+      <div class="modal-card" style="max-width: 680px; padding: 0; overflow: hidden; background: #000;">
+        <div style="padding: 0.85rem 1.25rem; background: #0F172A; color: white; display: flex; justify-content: space-between; align-items: center;">
+          <h4 id="galleryModalTitle" style="font-size: 1rem; font-weight: 800; margin: 0; color: white;">Photo Preview</h4>
+          <button class="btn btn-ghost btn-sm" onclick="App.closeModal('galleryLightBoxModal')" style="color: white;"><i class="fas fa-times"></i></button>
+        </div>
+        <div style="text-align: center; background: #000; padding: 0.5rem;">
+          <img id="galleryModalImg" src="" alt="Gallery Preview" style="max-width: 100%; max-height: 70vh; object-fit: contain;">
         </div>
       </div>
     </div>

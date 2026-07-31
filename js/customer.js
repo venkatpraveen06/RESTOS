@@ -14,6 +14,7 @@ const CustomerModule = {
     this.renderMenuItems();
     this.renderCustomerTableMap();
     this.renderCustomerConfirmedReservations();
+    this.renderCustomerFeedback();
     this.setupFilters();
   },
 
@@ -58,6 +59,10 @@ const CustomerModule = {
   selectCategory(catId) {
     this.activeCategory = catId;
     this.renderCategoryAvatars();
+    if (typeof window !== 'undefined' && window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/')) {
+      window.location.href = 'menu.html';
+      return;
+    }
     this.renderMenuItems();
     if (typeof App !== 'undefined' && App.currentView === 'menu-catalog') {
       this.renderFullMenuCardPage();
@@ -693,6 +698,124 @@ const CustomerModule = {
     App.showToast(`Order ${newOrder.id} placed successfully! 🎉`, 'success');
     App.triggerWhatsAppFlow(newOrder);
     App.switchView('customer-site');
+  },
+
+  // 6. Customer Feedback & Review Methods
+  renderCustomerFeedback() {
+    const store = getStore();
+    const container = document.getElementById('feedbackGridContainer');
+    if (!container) return;
+
+    const reviews = store.reviews || [
+      {
+        id: "rev-1",
+        name: "Ananya Sharma",
+        rating: 5,
+        date: "2 days ago",
+        comment: "The Andhra Chicken Biryani is absolutely mind-blowing! Authentic spices, generous quantity, and ultra-fast hot delivery. 10/10 recommended!",
+        dish: "Andhra Chicken Biryani",
+        verified: true
+      },
+      {
+        id: "rev-2",
+        name: "Karthik Raja",
+        rating: 5,
+        date: "1 week ago",
+        comment: "Best Andhra Meals in Indiranagar! The Avakaya pickle and Majjiga buttermilk taste exactly like home in Vijayawada.",
+        dish: "Andhra Royal Thali Meal",
+        verified: true
+      },
+      {
+        id: "rev-3",
+        name: "Priya Varma",
+        rating: 5,
+        date: "2 weeks ago",
+        comment: "Outstanding customer service and hygienic packing. The WhatsApp order updates made tracking super smooth!",
+        dish: "Chicken Fry Piece Biryani",
+        verified: true
+      }
+    ];
+
+    container.innerHTML = reviews.map(r => `
+      <div style="background: #FFFFFF; border: 1px solid var(--border-color); border-radius: var(--radius-xl); padding: 1.35rem; box-shadow: 0 4px 14px rgba(15,23,42,0.03); display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <div style="display: flex; align-items: center; gap: 0.65rem;">
+              <div style="width: 42px; height: 42px; background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem;">
+                ${r.name.charAt(0)}
+              </div>
+              <div>
+                <div style="font-weight: 800; font-size: 0.95rem; color: #0F172A;">${r.name}</div>
+                <div style="font-size: 0.75rem; color: #64748B;">${r.dish || 'Verified Customer'} • ${r.date}</div>
+              </div>
+            </div>
+            <span class="badge badge-success"><i class="fas fa-check-circle"></i> Verified</span>
+          </div>
+
+          <div style="color: #F59E0B; font-size: 0.85rem; margin-bottom: 0.6rem;">
+            ${Array(r.rating).fill('<i class="fas fa-star"></i>').join('')}
+          </div>
+
+          <p style="font-size: 0.88rem; color: #334155; line-height: 1.5; font-style: italic;">"${r.comment}"</p>
+        </div>
+      </div>
+    `).join('');
+  },
+
+  submitCustomerFeedback(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const nameIn = document.getElementById('feedbackCustName');
+    const commentIn = document.getElementById('feedbackComment');
+    const ratingIn = document.getElementById('feedbackRating');
+    const dishIn = document.getElementById('feedbackDish');
+
+    if (!nameIn || !commentIn) return;
+
+    const name = nameIn.value.trim();
+    const comment = commentIn.value.trim();
+    const rating = ratingIn ? (parseInt(ratingIn.value) || 5) : 5;
+    const dish = dishIn ? dishIn.value.trim() : 'Special Order';
+
+    if (!name || !comment) {
+      App.showToast('Please enter your name and feedback message.', 'warning');
+      return;
+    }
+
+    const store = getStore();
+    if (!store.reviews) store.reviews = [];
+
+    const newRev = {
+      id: `rev-${Date.now()}`,
+      name: name,
+      rating: rating,
+      date: 'Just now',
+      comment: comment,
+      dish: dish || 'Special Order',
+      verified: true
+    };
+
+    store.reviews.unshift(newRev);
+    updateStore(store);
+
+    App.closeModal('feedbackModal');
+    App.showToast('Thank you! Your feedback has been published 🎉', 'success');
+    this.renderCustomerFeedback();
+
+    if (document.getElementById('feedbackForm')) {
+      document.getElementById('feedbackForm').reset();
+    }
+  },
+
+  openGalleryPreview(imgUrl, title) {
+    const modalImg = document.getElementById('galleryModalImg');
+    const modalTitle = document.getElementById('galleryModalTitle');
+    if (modalImg) modalImg.src = imgUrl;
+    if (modalTitle) modalTitle.textContent = title;
+    App.openModal('galleryLightBoxModal');
+  },
+
+  openDirections() {
+    window.open('https://maps.google.com/?q=Indiranagar+Double+Road+Bengaluru', '_blank');
   }
 };
 

@@ -136,6 +136,63 @@
       </div>
     </div>
 
+    <!-- Customer Feedback Submission Modal -->
+    <div class="modal-backdrop" id="feedbackModal">
+      <div class="modal-card" style="max-width: 500px;">
+        <div class="modal-header">
+          <h3 style="font-size: 1.1rem; font-weight: 800; color: #0F172A; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-star" style="color: #F59E0B;"></i> Share Your Dining Feedback
+          </h3>
+          <button class="btn btn-ghost btn-sm" onclick="App.closeModal('feedbackModal')"><i class="fas fa-times"></i></button>
+        </div>
+        <form id="feedbackForm" onsubmit="CustomerModule.submitCustomerFeedback(event)">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">Your Full Name *</label>
+              <input type="text" id="feedbackCustName" class="form-input" required placeholder="e.g. Vikramaditya Rao">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label">Star Rating *</label>
+                <select id="feedbackRating" class="form-select" required>
+                  <option value="5">⭐⭐⭐⭐⭐ (5/5 Exceptional)</option>
+                  <option value="4">⭐⭐⭐⭐ (4/5 Great)</option>
+                  <option value="3">⭐⭐⭐ (3/5 Average)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Dish Ordered</label>
+                <input type="text" id="feedbackDish" class="form-input" placeholder="e.g. Andhra Chicken Biryani">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Your Review & Dining Experience *</label>
+              <textarea id="feedbackComment" class="form-textarea" rows="3" required placeholder="Tell us about the flavor, portion, speed, and service..."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="App.closeModal('feedbackModal')">Cancel</button>
+            <button type="submit" class="btn btn-primary" style="background: #10B981; border: none; font-weight: 800;">
+              <i class="fas fa-paper-plane"></i> Publish Review
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Gallery Lightbox Preview Modal -->
+    <div class="modal-backdrop" id="galleryLightBoxModal">
+      <div class="modal-card" style="max-width: 680px; padding: 0; overflow: hidden; background: #000;">
+        <div style="padding: 0.85rem 1.25rem; background: #0F172A; color: white; display: flex; justify-content: space-between; align-items: center;">
+          <h4 id="galleryModalTitle" style="font-size: 1rem; font-weight: 800; margin: 0; color: white;">Photo Preview</h4>
+          <button class="btn btn-ghost btn-sm" onclick="App.closeModal('galleryLightBoxModal')" style="color: white;"><i class="fas fa-times"></i></button>
+        </div>
+        <div style="text-align: center; background: #000; padding: 0.5rem;">
+          <img id="galleryModalImg" src="" alt="Gallery Preview" style="max-width: 100%; max-height: 70vh; object-fit: contain;">
+        </div>
+      </div>
+    </div>
+
     <div id="toastContainer" class="toast-container"></div>
   </div>
 
